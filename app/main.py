@@ -25,9 +25,7 @@ app.add_middleware(
     allow_headers=["*"],  
 )
 
-# Include routers
-# app.include_router(upload.router, prefix="/upload", tags=["Upload"])
-app.include_router(reviews.router, prefix="/files", tags=["Files"])
+app.include_router(reviews.router, prefix="/reviews", tags=["Reviews, trends"])
 
 @app.get("/")
 def read_root():
