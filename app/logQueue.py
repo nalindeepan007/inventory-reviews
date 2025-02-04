@@ -1,10 +1,10 @@
 from celery import Celery
 from app.dbModel import AccessLog
 from app.dbLogging import SessionLocal
-import os
 
-redisUrl = os.getenv("REDIS_URL")
-celeryLog = Celery('tasks', broker=redisUrl, backend=redisUrl)
+
+
+celeryLog = Celery('tasks', broker='redis://localhost:6379/0', backend='redis://localhost:6379/0')
 
 @celeryLog.task
 def logAccess(text: str):
