@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
 async def lifespanPlan(app: FastAPI):
-    # Startup: Create database schema
+    # Startup: Create database schema if not present
     await createDbSchema()
     yield
     # Shutdown: Close database connections
