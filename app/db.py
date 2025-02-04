@@ -1,6 +1,6 @@
 
 import os
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 from urllib.parse import urlparse
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from app.dbModel import Base
@@ -17,7 +17,7 @@ engine = create_async_engine(f"postgresql+asyncpg://{tmpPostgres.username}:{tmpP
 async def createDbSchema() -> None:
     """ create the initial db schema for neon db postgres"""
     async with engine.begin() as conn:
-            # await conn.run_sync(Base.metadata.drop_all) # droping existing
+         
             await conn.run_sync(Base.metadata.create_all)
     await engine.dispose()
     
